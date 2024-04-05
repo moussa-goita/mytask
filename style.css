@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --gris: #9694AE; 
+    --noir: black;
+    --blanc: white;
+    --vert: #C4BE2E;
+}
+body{
+    overflow: hidden;
+    background: var(--blanc);
+}
+.container{
+    max-width: 405px;
+    margin: 135px auto;
+    background: var(--blanc);
+    border-radius: 22px;
+    border-color: var(--gris);
+    border-style: solid;
+    height: 100%;
+}
+.head h1{
+    align-items: center;
+    justify-content: center;
+    
+}
+.head{
+    position: relative;
+    background: var(--gris);
+    border-radius: 21px;
+    top: 0%;
+}
+.AjouTask{
+    height: 52px;
+    padding: 0 25px;
+    position: relative;
+    display: flex;
+    background: var(--gris);
+}
+.task p{
+    font-size: 25px;
+}
+.AjouTask input{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid var(--gris);
+    padding: O 20px 0 53px;
+}
+.AjouTask button{
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 7px 13px;
+    background: var(--vert);
+}
+.AjouTask input::placeholder{
+    color: #bfbfbf;
+}
+.categories,  li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.categories{
+    padding: 28px 25px;
+    border-bottom: 1px solid #ccc;
+    background: var(--gris);
+}
+.filtrages span{
+    cursor: pointer;
+    margin: 0 8px;
+    font-size: 17px;
+}
+.filtrages span:first-child{
+    margin-left: 0;
+}
+.filtrages span.active{
+    color: rgb(99, 202, 16);
+}
+.categories .deletteBtn{
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 7px 13px;
+    background: var(--vert);
+} 
+.lisTache{
+    height: 60%;
+    margin-top: 0;
+    background-color: var(--blanc);
+}
+.taskItem{
+    margin: 12px 25px;
+}
+.taskItem .task{
+    list-style: none;
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gris);
+}
+.task{
+    background: var(--gris);
+    border-radius: 12px;
+    height: 55px;
+    justify-content: space-between;
+}
+.li label h2{
+    background: #C4BE2E;
+    color: #C4BE2E;
+}
+.infoTask .date{
+    position: absolute;
+    background: #fff;
+    margin-top: 2px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.taskItem .task:last-child{
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+    border-radius: 12px;
+}
+.task label {
+    display: flex;
+}
+.task label input{
+    position: relative;
+    margin-top: 6px;
+    margin-right: 5px;
+    width: 30px;
+    height: 20px;
+}
+.task label input span{
+    background: #C4BE2E;
+}
