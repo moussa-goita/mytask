@@ -1,21 +1,17 @@
-/* Réinitialisation des styles pour tous les éléments */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; /* Utilisation de la police Poppins */
+    font-family: 'Poppins', sans-serif;
 }
-/* Définition des variables de couleur */
-:root {
-    --gris: #9694AE; /* Définition de la couleur grise */
-    --noir: black; /* Définition de la couleur noire */
-    --blanc: white; /* Définition de la couleur blanche */
-    --vert: #C4BE2E; /* Définition de la couleur verte */
+:root{
+    --gris: #9694AE; 
+    --noir: black;
+    --blanc: white;
+    --vert: #C4BE2E;
 }
-/* Styles de base pour le corps de la page */
-
 body{
-    background: var(--blanc); /* Couleur de fond blanche */
+    background: var(--blanc);
     margin: 0;
     padding: 0;
     display: flex;
@@ -24,75 +20,151 @@ body{
     height: 100vh; /* Occupe toute la hauteur de la fenêtre */
     background-color: #f0f0f0; /* Ajoute une couleur de fond */
 }
-/* Conteneur principal */
+
 .container{
     position: relative;
-    max-width: 405px;
+    max-height: 100vh;
     margin: 0 auto;
     padding: 0;
     justify-content: center;
     align-items: center;
-    background: var(--blanc);  /* Couleur de fond blanche */
+    background: var(--blanc);
     border-radius: 22px;
-    border-color: var(--gris); /* Couleur de bordure grise */
+    border-color: var(--gris);
     border-style: solid;
-}
-
-/* Styles pour l'en-tête */
-.head{
-    position: relative;
-    background: var(--gris); /* Couleur de fond grise */
-    border-radius: 21px;
-    top: 0%;
 }
 .head h1{
     align-items: center;
     justify-content: center;
     
 }
-/* Styles pour l'ajout de tâche */
-.AjouTask {
+.head{
+    position: relative;
+    background: var(--gris);
+    border-radius: 21px;
+    top: 0%;
+}
+
+#txt{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:1;
+    font-family:sans-serif;
+    letter-spacing:3.5px;
+    font-size:3.5rem;
+    font-weight:700;
+    position:relative;
+    transform-style:preserve-3d;
+    perspective:100px;
+    -webkit-transform-style:preserve-3d;
+    -webkit-perspective:100px;
+ }
+ #txt>b{
+    height:3.5rem;
+    box-shadow:0 .4rem .3rem -.3rem #aaa;
+    color:#979c9f;
+    background:linear-gradient(#aaf,#acf,#afc);
+    background-clip:text;
+    text-emphasis-color:transparent;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    transform-origin:bottom;
+    transform:rotateX(-85deg);
+    -webkit-transform-origin:bottom;
+    -webkit-transform:rotateX(-85deg);
+    animation:getUp 7s infinite;
+ }
+ #txt>b:nth-child(2){
+    animation-delay:.25s;
+ }
+ #txt>b:nth-child(3){
+    animation-delay:.5s;
+ }
+ #txt>b:nth-child(4){
+    animation-delay:.75s;
+ }
+ #txt>b:nth-child(5){
+    animation-delay:1s;
+ }
+ #txt>b:nth-child(6){
+    animation-delay:1.25s;
+ }
+ #txt>b:nth-child(7){
+    animation-delay:1.5s;
+ }
+ #txt>b:nth-child(8){
+    animation-delay:1.75s;
+ }
+ @keyframes getUp{
+    10%,50%{
+       transform:rotateX(0);
+    }
+    0%,60%,100%{
+       transform:rotateX(-85deg);
+    }
+ }
+.AjouTask{
     height: 42px;
     padding: 0 25px;
     position: relative;
     display: flex;
-    background: var(--gris); /* Couleur de fond grise */
+    background: var(--gris);
 }
-/* Styles pour les tâches */
-.task {
-    background: var(--gris); /* Couleur de fond grise */
-    border-radius: 12px;
-    height: 55px;
-    flex-wrap: wrap;
+.task p{
+    font-size: 25px;
 }
-/* Styles pour les boutons */
-.AjouTask button,
-.categories .deletteBtn {
-    outline: none;
-    border: none;
-    color: #fff; /* Couleur du texte blanc */
-    cursor: pointer;
-    font-size: 13px;
-    border-radius: 4px;
-    padding: 7px 13px;
-    background: var(--vert); /* Couleur de fond verte */
+.task  .checked {
+    text-decoration: line-through;
 }
-
-/* Styles pour les champs de texte */
-.AjouTask input,
-.box-input {
+.AjouTask input{
     display: flex;
     outline: none;
     font-size: 18px;
     border-radius: 5px;
-    border: 1px solid var(--gris); /* Bordure grise */
-    padding: 0 20px 0 53px;
+    border: 1px solid var(--gris);
+    padding: O 20px 0 53px;
 }
-
-.task p{
-    font-size: 25px;
+.AjouTask button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 7px 13px;
+    transition: all 0.6s;
 }
-/* Styles pour les catégories */
+.btn {
+    border-radius: 4px;
+    text-transform: uppercase;
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid black;
+    padding: 1rem 2rem;
+    font-size: 3rem;
+    background-size: 300%;
+    transition: all 0.6s;
+  }
+.orange {
+    color: orange;
+    background-image: linear-gradient(120deg, white 50%, orange 50%);
+}
+.btn:hover {
+    color: #fff;
+    background-position: 100%;
+    transform: translateX(0.5rem);
+  }
+  
+  .btn:active {
+    transform: translate(0.5rem, 0.5rem);
+    box-shadow: 0px 10px 20px -15px rgba(0, 0, 0, 0.75);
+  }
+.AjouTask input::placeholder{
+    color: #bfbfbf;
+}
 .categories,  li{
     display: flex;
     align-items: center;
@@ -103,53 +175,134 @@ body{
     border-bottom: 1px solid #ccc;
     background: var(--gris);
 }
-/* Styles pour les filtres */
-.filtrages span {
+.filtrages span{
     cursor: pointer;
     margin: 0 8px;
     font-size: 17px;
 }
-/* Styles pour le filtre actif */
-.filtrages span.active {
-    color: rgb(99, 202, 16); /* Couleur du texte verte */
-    background: var(--blanc); /* Couleur de fond blanche */
+.filtrages span:first-child{
+    margin-left: 0;
+}
+.filtrages span.active{
+    color: rgb(99, 202, 16);
+    background: var(--blanc);
     padding: 18px;
     margin: 0;
     bottom: 0;
 }
-/* Styles pour les listes de tâches */
-.lisTache {
+.categories .deletteBtn{
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 7px 13px;
+    background: var(--vert);
+    transition: opacity 0.4s 0.2s ease-out;
+
+} 
+.lisTache{
     height: 60%;
     margin-top: 0;
-    background-color: var(--blanc); /* Couleur de fond blanche */
+    background-color: var(--blanc);
 }
-
-/* Styles pour les éléments de tâche */
-.taskItem {
+.taskItem{
     margin: 12px 25px;
 }
 
-/* Styles pour les informations de tâche */
-.infoTask {
-    display: list-item;
+.taskItem .task{
+    list-style: none;
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gris);
+}
+.task-content{
+    justify-content: space-between;
+}
+.task{
+    background: var(--gris);
+    border-radius: 12px;
+    height: 55px;
+    flex-wrap: wrap;
 }
 
-/* Styles pour les dates de tâche */
-.infoTask .date {
-    background: #e41111; /* Couleur rouge pour la date */
+.infoTask .date{
+    background: var(--vert);
     font-size: 12px;
     border-radius: 3px;
 }
+.taskItem .task:last-child{
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+    border-radius: 12px;
+}
 
-/* Styles pour les boutons de configuration */
+
+.task label {
+    display: flex;
+}
+.task label input{
+    position: relative;
+    margin-top: 6px;
+    margin-right: 5px;
+    width: 30px;
+    height: 20px;
+}
+.task-content label input[type="checkbox"]:checked + .infoTask p {
+    text-decoration: line-through;
+}
+
+.task .task-content {
+    display: contents;
+}
+
+.task .infoTask {
+    display: list-item;
+}
+.task .infoTask p {
+    margin: 0;
+}
+.task .priority {
+    margin-right: 19px;
+    top: 12px;
+    font-size: 22px;
+    border-radius: 11px;
+    background: var(--vert);
+    font-size: 19px;
+    /* Espacement entre la priorité et la date */   
+}
+.task .date { /* Espacement entre la date et le statut */
+    margin-right: 5px;
+    font-size: 15px;
+    border-radius: 10px;
+    
+}
+.settings button{
+    margin-right: 32px;
+}
+
 .task .settings {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
-/* Styles pour la modal */
-.modal-container {
+/* Ajoutez d'autres styles au besoin */
+
+
+.modal-btn {
+    padding: 10px 14px;
+    font-size: 18px;
+    display: block;
+    min-width: 150px;
+    cursor: pointer;
+  }
+  
+  .modal-container {
+    /* display: none; */
     visibility: hidden;
     position: fixed;
     top: 0;
@@ -157,45 +310,49 @@ body{
     height: 100vh;
     transition: visibility 0.4s;
     z-index: 1;
-}
-
-/* Styles pour l'overlay de la modal */
-.overlay {
+  }
+  .modal-container.active {
+    /* display: block; */
+    visibility: visible;
+  }
+  
+  .overlay {
     opacity: 0;
     position: absolute;
     width: 100%;
     height: 100%;
     background: #333333d3;
     transition: opacity 0.4s 0.2s ease-out;
-}
-
-/* Styles pour la modal active */
-.modal-container.active {
-    visibility: visible;
-}
-
-/* Styles pour la modal elle-même */
-.modal {
-    opacity: 0;
+  }
+  .modal-container.active .overlay {
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+  }
+  
+  .modal {
+    opacity:inherit;
+    justify-content: center;
+    text-align: center;
     padding: 30px;
+    margin-top: 42px;
     background: #fff;
     border-radius: 5px;
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, calc(-50% - 50px));
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-}
-
-/* Styles pour la modal active */
-.modal-container.active .modal {
+    transition: opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+  }
+  
+  .modal-container.active .modal {
     opacity: 1;
     transform: translate(-50%, -50%);
-    transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
-}
-
-/* Styles pour le bouton de fermeture de la modal */
-.close-modal {
+    transition: opacity 0.4s 0.2s ease-out,
+    transform 0.4s 0.2s ease-out;
+  }
+  
+  .close-modal {
     padding: 8px 10px;
     border: none;
     border-radius: 5px;
@@ -204,72 +361,67 @@ body{
     top: 10px;
     right: 10px;
     cursor: pointer;
-    background: #ff365e; /* Couleur rouge pour le bouton de fermeture */
-    color: #fff; /* Couleur du texte blanc */
-}
-
-/* Styles pour le titre de la modal */
-.modal h1 {
+    background: var(--vert);
+    color: #fff;
+  }
+  .modal h1 {
     margin-bottom: 10px;
+    margin-top: 22px;
     font-family: Montserrat, sans-serif;
-    font-weight: 500;
-}
-
-/* Styles pour le contenu de la modal */
-.modal p {
+    font-weight: 50;
+  }
+  .modal p {
     line-height: 1.4;
     margin-bottom: 5px;
-}
+    font-size: 22px;
+  }
 
-/* Styles pour la boîte */
-.box {
+
+  .box {
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 1px solid #c4c4c4;
-    background: white; /* Couleur de fond blanche */
+    border: 1px solid var(--gris);
+    background: var(--blanc);
     border-radius: 5px;
-}
+  }
 
-/* Styles pour le champ de saisie de la boîte */
 .box-input {
     font-size: 18px;
-    background: #fff;
-    border: 2px solid rgb(160, 154, 154);
+    background: var(--blanc);
+    border: 2px solid var(--gris);
     margin-top: 12px;
     margin-bottom: 25px;
-    padding-left: 10px;
+    padding-left:10px;
     border-radius: 5px;
     width: 220px;
     height: 50px;
+  }
+.box-input:focus {
+    outline: none;
 }
-
-/* Styles pour le bouton de la boîte */
+  
 .box-button {
     border-radius: 5px;
-    background: #ec1b08; /* Couleur rouge pour le bouton */
+    background: #ec1b08;
     text-align: center;
     cursor: pointer;
     font-size: 19px;
     width: 100%;
     height: 51px;
     padding: 0;
-    color: #fff; /* Couleur du texte blanc */
+    color: #fff;
     border: 0;
-    outline: 0;
-}
-
-/* Styles pour les tâches terminées */
-.completed {
+    outline:0;
+  }
+  .completed {
     text-decoration: line-through; /* Barre de texte barrée */
 }
 
-/* Styles pour la case à cocher des tâches terminées */
 .completed input[type="checkbox"] {
     visibility: hidden; /* Masquer la case à cocher */
 }
 
-/* Styles pour le symbole de la case cochée */
 .completed input[type="checkbox"] + label::before {
     content: "✔"; /* Symbole de case cochée */
     display: inline-block;
@@ -277,7 +429,13 @@ body{
     margin-right: 5px;
 }
 
-/* Styles pour le texte de la tâche terminée */
 .completed .task-content label::before {
     text-decoration: line-through; /* Barre de texte barrée sur la case à cocher */
+}
+
+  
+  @media (max-width: 768px) {
+    .modal-container {
+        width: 90%; /* Réduire la largeur du conteneur pour les petits écrans */
+    }
 }
