@@ -3,54 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Importation du fichier de style -->
     <title>My Task</title>
 </head>
 <body>
     <div class="container">
         <div class="head">
-            <h1 id="main-heading" tabindex="0"  aria-label="Liste des tâches">My Task</h1>
+            <!-- En-tête de la page avec le titre de la liste des tâches -->
+            <h1 id="main-heading" tabindex="0">My Task</h1>
+            <!-- Formulaire d'ajout de tâche -->
             <div class="AjouTask">
                 <input type="text" id="taskInput" aria-label="Saisissez une nouvelle tâche">
                 <button id="addTaskButton" aria-label="Ajouter une tâche">Ajouter</button>
             </div>
+            <!-- Catégories et filtres des tâches -->
             <div class="categories">
-                <div class="filtrages" aria-label="Filtres des tâches">
-                    <span id="allTasks" class="filter-option active" tabindex="0" aria-label="Afficher toutes les tâches" role="button">Tout</span>
-                    <span id="todoTasks" class="filter-option" tabindex="0" aria-label="Afficher les tâches à faire" role="button">A faire</span>
-                    <span id="inProgressTasks" class="filter-option" tabindex="0" aria-label="Afficher les tâches en cours" role="button">En cours</span>
-                    <span id="completedTasks" class="filter-option" tabindex="0" aria-label="Afficher les tâches terminées" role="button">Terminé</span>
+                <div class="filtrages">
+                    <!-- Filtre pour afficher toutes les tâches -->
+                    <span id="allTasks" class="filter-option active" tabindex="0" role="button">Tout</span>
+                    <!-- Filtre pour afficher les tâches à faire -->
+                    <span id="todoTasks" class="filter-option" tabindex="0" role="button">A faire</span>
+                    <!-- Filtre pour afficher les tâches en cours -->
+                    <span id="inProgressTasks" class="filter-option" tabindex="0" role="button">En cours</span>
+                    <!-- Filtre pour afficher les tâches terminées -->
+                    <span id="completedTasks" class="filter-option" tabindex="0" role="button">Terminé</span>
                 </div>
             </div>
         </div>
+        <!-- Liste des tâches -->
         <ul class="taskItem" aria-live="polite" aria-relevant="additions removals">
         </ul>
     </div>
-    <div class="modal-container" aria-hidden="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
-
+    <!-- Fenêtre modale pour l'ajout de tâches -->
+    <div class="modal-container" aria-hidden="true" aria-labelledby="modalTitle">
         <div class="modal" role="dialog" aria-modal="true">
-          <button 
-          aria-label="Fermer la fenêtre modale"
-          class="close-modal modal-trigger">X</button>
-          <h1 id="modalTitle">Votre tâche a été ajoutée avec succès</h1>
-          <form class="box" action="" method="post">
-            <select class="box-input" name="priorite" required aria-label="Sélectionnez la priorité de la tâche">
-                <option value="" selected disabled>Choisissez la priorité</option>
-                <option value="Basse">Basse</option>
-                <option value="Moyenne">Moyenne</option>
-                <option value="Haute">Haute</option>
-            </select>
-            <input type="date" class="box-input" name="date" placeholder="date" required aria-label="Saisissez la date de la tâche" />
-            <select class="box-input" name="status" required aria-label="Sélectionnez le statut de la tâche">
-                <option value="" selected disabled>Choisissez le statut</option>
-                <option value="encours">En cours</option>
-                <option value="terminé">Terminé</option>
-                <option value="en attente">En attente</option>
-            </select>
-            <button type="submit" name="submit" id="" value="Valider" class="box-button" aria-label="Valider la tâche">Valider</button>
-        </form>
+            <!-- Bouton de fermeture de la fenêtre modale -->
+            <button aria-label="Fermer la fenêtre modale" class="close-modal modal-trigger">X</button>
+            <!-- Titre de la fenêtre modale -->
+            <h1 id="modalTitle">Votre tâche a été ajoutée avec succès</h1>
+            <!-- Formulaire pour saisir les détails de la tâche -->
+            <form class="box" method="post">
+                <!-- Sélecteur de priorité de la tâche -->
+                <select class="box-input" name="priorite" required aria-label="Sélectionnez la priorité de la tâche">
+                    <option value="" selected disabled>Choisissez la priorité</option>
+                    <option value="Basse">Basse</option>
+                    <option value="Moyenne">Moyenne</option>
+                    <option value="Haute">Haute</option>
+                </select>
+                <!-- Champ pour la date de la tâche -->
+                <input type="date" class="box-input" name="date" required aria-label="Saisissez la date de la tâche">
+                <!-- Sélecteur de statut de la tâche -->
+                <select class="box-input" name="status" required aria-label="Sélectionnez le statut de la tâche">
+                    <option value="" selected disabled>Choisissez le statut</option>
+                    <option value="encours">En cours</option>
+                    <option value="terminé">Terminé</option>
+                    <option value="en attente">En attente</option>
+                </select>
+                <!-- Bouton de validation de la tâche -->
+                <button type="submit" name="submit" value="Valider" class="box-button" aria-label="Valider la tâche">Valider</button>
+            </form>
         </div>
     </div>
+    <!-- Importation du fichier de script -->
     <script src="script.js"></script>
 </body>
 </html>
