@@ -10,11 +10,13 @@
     <div class="container">
         <div class="head">
             <!-- En-tête de la page avec le titre de la liste des tâches -->
-            <h1 id="main-heading" tabindex="0">My Task</h1>
+            <div class="txt" id="txt">
+                <b>M</b><b>Y</b><b>T</b><b>A</b><b>S</b><b>K</b>
+        </div>
             <!-- Formulaire d'ajout de tâche -->
             <div class="AjouTask">
                 <input type="text" id="taskInput" aria-label="Saisissez une nouvelle tâche">
-                <button id="addTaskButton" aria-label="Ajouter une tâche">Ajouter</button>
+                <button class="btn orange" id="addTaskButton" aria-label="Ajouter une tâche">Ajouter</button>
             </div>
             <!-- Catégories et filtres des tâches -->
             <div class="categories">
@@ -41,6 +43,7 @@
             <button aria-label="Fermer la fenêtre modale" class="close-modal modal-trigger">X</button>
             <!-- Titre de la fenêtre modale -->
             <h1 id="modalTitle">Votre tâche a été ajoutée avec succès</h1>
+            <p>Ajouter les attributs correspondant au  tâche</p>
             <!-- Formulaire pour saisir les détails de la tâche -->
             <form class="box" method="post">
                 <!-- Sélecteur de priorité de la tâche -->
