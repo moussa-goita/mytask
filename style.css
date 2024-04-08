@@ -1,0 +1,371 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --gris: #9694AE; 
+    --noir: black;
+    --blanc: white;
+    --vert: #C4BE2E;
+}
+body{
+    background: var(--blanc);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+    height: 100vh; /* Occupe toute la hauteur de la fenêtre */
+    background-color: #f0f0f0; /* Ajoute une couleur de fond */
+}
+.container{
+    position: relative;
+    max-width: 405px;
+    margin: 0 auto;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background: var(--blanc);
+    border-radius: 22px;
+    border-color: var(--gris);
+    border-style: solid;
+}
+.head h1{
+    align-items: center;
+    justify-content: center;
+    
+}
+.head{
+    position: relative;
+    background: var(--gris);
+    border-radius: 21px;
+    top: 0%;
+}
+.AjouTask{
+    height: 42px;
+    padding: 0 25px;
+    position: relative;
+    display: flex;
+    background: var(--gris);
+}
+.task p{
+    font-size: 25px;
+}
+.task  .checked {
+    text-decoration: line-through;
+}
+.AjouTask input{
+    display: flex;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid var(--gris);
+    padding: O 20px 0 53px;
+}
+.AjouTask button{
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 7px 13px;
+    background: var(--vert);
+}
+.AjouTask input::placeholder{
+    color: #bfbfbf;
+}
+.categories,  li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.categories{
+    padding: 28px 25px;
+    border-bottom: 1px solid #ccc;
+    background: var(--gris);
+}
+.filtrages span{
+    cursor: pointer;
+    margin: 0 8px;
+    font-size: 17px;
+}
+.filtrages span:first-child{
+    margin-left: 0;
+}
+.filtrages span.active{
+    color: rgb(99, 202, 16);
+    background: var(--blanc);
+    padding: 18px;
+    margin: 0;
+    bottom: 0;
+}
+.categories .deletteBtn{
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 7px 13px;
+    background: var(--vert);
+} 
+.lisTache{
+    height: 60%;
+    margin-top: 0;
+    background-color: var(--blanc);
+}
+.taskItem{
+    margin: 12px 25px;
+}
+
+.taskItem .task{
+    list-style: none;
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gris);
+}
+.task-content{
+    justify-content: space-between;
+}
+.task{
+    background: var(--gris);
+    border-radius: 12px;
+    height: 55px;
+    flex-wrap: wrap;
+}
+
+.infoTask .date{
+    background: #e41111;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.taskItem .task:last-child{
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+    border-radius: 12px;
+}
+
+
+.task label {
+    display: flex;
+}
+.task label input{
+    position: relative;
+    margin-top: 6px;
+    margin-right: 5px;
+    width: 30px;
+    height: 20px;
+}
+.task-content label input[type="checkbox"]:checked + .infoTask p {
+    text-decoration: line-through;
+}
+
+.task .task-content {
+    display: contents;
+}
+
+.task .infoTask {
+    display: list-item;
+}
+.task .infoTask p {
+    margin: 0;
+}
+.task .priority {
+    margin-right: 19px;
+    top: 12px;
+    font-size: 22px;
+    border-radius: 11px;
+    background: #2b4086;
+    font-size: 19px;
+    /* Espacement entre la priorité et la date */   
+}
+.task .date { /* Espacement entre la date et le statut */
+    margin-right: 5px;
+    font-size: 15px;
+    border-radius: 10px;
+    
+}
+.settings button{
+    margin-right: 32px;
+}
+.task .settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Ajoutez d'autres styles au besoin */
+
+
+.modal-btn {
+    padding: 10px 14px;
+    font-size: 18px;
+    display: block;
+    min-width: 150px;
+    cursor: pointer;
+  }
+  
+  .modal-container {
+    /* display: none; */
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: visibility 0.4s;
+    z-index: 1;
+  }
+  .modal-container.active {
+    /* display: block; */
+    visibility: visible;
+  }
+  
+  .overlay {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #333333d3;
+    transition: opacity 0.4s 0.2s ease-out;
+  }
+  .modal-container.active .overlay {
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+  }
+  
+  .modal {
+    opacity: 0;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 50px));
+    transition: opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+  }
+  
+  .modal-container.active .modal {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s 0.2s ease-out,
+    transform 0.4s 0.2s ease-out;
+  }
+  
+  .close-modal {
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background: #ff365e;
+    color: #fff;
+  }
+  .modal h1 {
+    margin-bottom: 10px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+  }
+  .modal p {
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+
+
+  .box {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #c4c4c4;
+    background: white;
+    border-radius: 5px;
+  
+  }
+
+.box-input {
+
+    font-size: 18px;
+  
+    background: #fff;
+  
+    border: 2px solid rgb(160, 154, 154);
+    margin-top: 12px;
+  
+    margin-bottom: 25px;
+  
+    padding-left:10px;
+  
+    border-radius: 5px;
+  
+    width: 220px;
+  
+    height: 50px;
+  
+  }
+.box-input:focus {
+
+    outline: none;
+
+    border-color:#2b4086;
+
+}
+  
+.box-button {
+
+    border-radius: 5px;
+  
+    background: #ec1b08;
+  
+    text-align: center;
+  
+    cursor: pointer;
+  
+    font-size: 19px;
+  
+    width: 100%;
+  
+    height: 51px;
+  
+    padding: 0;
+  
+    color: #fff;
+  
+    border: 0;
+  
+    outline:0;
+  
+  }
+  .completed {
+    text-decoration: line-through; /* Barre de texte barrée */
+}
+
+.completed input[type="checkbox"] {
+    visibility: hidden; /* Masquer la case à cocher */
+}
+
+.completed input[type="checkbox"] + label::before {
+    content: "✔"; /* Symbole de case cochée */
+    display: inline-block;
+    font-size: 1.2em;
+    margin-right: 5px;
+}
+
+.completed .task-content label::before {
+    text-decoration: line-through; /* Barre de texte barrée sur la case à cocher */
+}
+
+  
+  @media (max-width: 768px) {
+    .modal-container {
+        width: 90%; /* Réduire la largeur du conteneur pour les petits écrans */
+    }
+}
