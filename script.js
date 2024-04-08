@@ -1,23 +1,28 @@
-const taskInput = document.querySelector(".AjouTask input");
-const addTaskButton = document.getElementById("addTaskButton");
-const taskItem = document.querySelector(".taskItem");
+// Sélection des éléments HTML nécessaires
+const taskInput = document.querySelector(".AjouTask input"); // Champ de saisie de la tâche
+const addTaskButton = document.getElementById("addTaskButton"); // Bouton pour ajouter une tâche
+const taskItem = document.querySelector(".taskItem"); // Conteneur des éléments de tâche
 
-//popup
-const modalContainer = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".modal-trigger");
+// Gestion de la fenêtre modale
+const modalContainer = document.querySelector(".modal-container"); // Conteneur de la fenêtre modale
+const modalTriggers = document.querySelectorAll(".modal-trigger"); // Déclencheurs de la fenêtre modale
 
+// Ajout d'écouteurs d'événements pour chaque déclencheur de la fenêtre modale
 modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal))
 
+// Fonction pour basculer l'état de la fenêtre modale entre actif et inactif
 function toggleModal(){
   modalContainer.classList.toggle("active")
 }
 
-// Local storage
-let todos = JSON.parse(localStorage.getItem("todo-list")) || [];
+// Données stockées localement
+let todos = JSON.parse(localStorage.getItem("todo-list")) || []; // Récupération des tâches depuis le stockage local, initialisation à un tableau vide s'il n'y a pas de données
 
+// Fonction pour afficher les tâches dans l'interface utilisateur
 function showTodo() {
-    let li = "";
+    let li = ""; // Variable pour stocker le contenu HTML des éléments de tâche
     todos.forEach((todo, id) => {
+        // Construction de chaque élément de tâche avec les informations stockées localement
         li += `<li class="task">
                 <div class="task-content">
                     <label for="${id}">
@@ -29,110 +34,185 @@ function showTodo() {
                         <h2></h2>
                     </label>
                     <div class="settings">
-                    <p class="priority">${todo.priority}</p>                    <img src="" alt="">
-                    <button onclick="deleteTask(${id})">X</button>
+                        <p class="priority">${todo.priority}</p> <!-- Affichage de la priorité de la tâche -->
+                        <img src="" alt="">
+                        <button onclick="deleteTask(${id})">X</button> <!-- Bouton pour supprimer la tâche -->
                     </div>
                 </div>
                 </li>`;
     });
-    taskItem.innerHTML = li;
+    taskItem.innerHTML = li; // Injection du contenu HTML dans le conteneur des éléments de tâche
 }
 
+// Fonction pour mettre à jour le statut de la tâche (en cours/terminée) lorsqu'on coche/décoche la case à cocher
 function updateStatus(selectedTask) {
-    let taskName = selectedTask.parentElement.lastElementChild.querySelector("p");
+    let taskId = parseInt(selectedTask.id); // Récupération de l'ID de la tâche
+    let taskName = selectedTask.parentElement.lastElementChild.querySelector("p"); // Sélection du nom de la tâche
     if (selectedTask.checked) {
-        taskName.classList.add("checked");
+        taskName.classList.add("checked"); // Ajout du style de tâche terminée (barrée)
+        // Mise à jour du statut de la tâche à "terminée" dans le tableau des tâches
+        todos[taskId].status = "terminée";
     } else {
-        taskName.classList.remove("checked");
+        taskName.classList.remove("checked"); // Retrait du style de tâche terminée (barrée)
+        // Mise à jour du statut de la tâche à "en cours" dans le tableau des tâches
+        todos[taskId].status = "en cours";
     }
+    localStorage.setItem("todo-list", JSON.stringify(todos)); // Mise à jour des données dans le stockage local
 }
 
+// Fonction pour supprimer une tâche
 function deleteTask(id) {
-    todos.splice(id, 1);
-    localStorage.setItem("todo-list", JSON.stringify(todos));
-    showTodo();
+    todos.splice(id, 1); // Suppression de la tâche du tableau des tâches
+    localStorage.setItem("todo-list", JSON.stringify(todos)); // Mise à jour des données dans le stockage local
+    showTodo(); // Actualisation de l'affichage des tâches
 }
+
+// Ajout d'un écouteur d'événements pour ajouter une nouvelle tâche
 addTaskButton.addEventListener("click", () => {
     let userTask = taskInput.value.trim();
     if (userTask) {
-        let taskInfo = { name: userTask  };
-        todos.push(taskInfo);
+        // Récupérer le nom de la tâche depuis le champ de saisie
+        let taskInfo = {
+            name: userTask,
+            date: "", // Initialiser la date à vide
+            priority: "", // Initialiser la priorité à vide
+            status: "en attente" // Initialiser le statut à "en attente"
+        };
+        // Afficher le formulaire modal
+        toggleModal();
+        // Réinitialiser les champs du formulaire modal
+        document.querySelector('.box-input[name="priorite"]').value = "";
+        document.querySelector('.box-input[name="date"]').value = "";
+        document.querySelector('.box-input[name="status"]').value = "";
+        // Stocker temporairement les détails de la tâche dans le sessionStorage
+        sessionStorage.setItem("tempTaskInfo", JSON.stringify(taskInfo));
         localStorage.setItem("todo-list", JSON.stringify(todos));
         showTodo();
-        taskInput.value = ""; // Efface le champ d'entrée après l'ajout de la tâche
-        showPopup("Votre tache a été ajouté avec succès", "", "", "encours");
-               
     }
 });
 
-function showPopup(message, priority, date, status) {
-    const modalContainer = document.querySelector('.modal-container');
-    const modalTitle = document.getElementById('modalTitle');
-    const priorityInput = document.querySelector('.box-input[name="priorite"]');
-    const dateInput = document.querySelector('.box-input[name="date"]');
-    const statusInput = document.querySelector('.box-input[name="status"]');
-    
-    modalTitle.textContent = message;
-    priorityInput.value = priority;
-    dateInput.value = date;
-    statusInput.value = status;
 
-    modalContainer.classList.add('active');
+
+
+const modalForm = document.querySelector('.modal form');
+// Ajoutez un gestionnaire d'événements pour le formulaire de la fenêtre modale
+modalForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Empêchez le formulaire de se soumettre normalement
+
+    // Récupérez les valeurs des champs de saisie du formulaire
+    let priorityValue = document.querySelector('.box-input[name="priorite"]').value;
+    let dateValue = document.querySelector('.box-input[name="date"]').value;
+    let statusValue = document.querySelector('.box-input[name="status"]').value;
+
+    // Récupérez les détails de la tâche initiale depuis le sessionStorage
+    let tempTaskInfo = JSON.parse(sessionStorage.getItem("tempTaskInfo"));
+
+    // Mettez à jour les détails de la tâche initiale avec les valeurs récupérées
+    tempTaskInfo.date = dateValue;
+    tempTaskInfo.priority = priorityValue;
+    tempTaskInfo.status = statusValue;
+
+    // Ajoutez la tâche mise à jour à votre liste de tâches
+    todos.push(tempTaskInfo);
+
+    // Mettez à jour le localStorage avec le nouveau tableau 'todos'
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+
+    // Actualisez l'affichage des tâches dans votre interface utilisateur
+    showTodo();
+
+    // Réinitialisez les champs de saisie du formulaire modal
+    modalForm.reset();
+
+    // Fermez la fenêtre modale
+    toggleModal();
+
+    // Réinitialisez le champ de saisie de la tâche principale
+    taskInput.value = "";
+});
+
+// Fonction pour afficher une fenêtre modale avec un message
+function showPopup(message, priority, date, status) {
+    let modalTitle = document.getElementById('modalTitle'); // Titre de la fenêtre modale
+    let priorityInput = document.querySelector('.box-input[name="priorite"]'); // Champ de priorité
+    let dateInput = document.querySelector('.box-input[name="date"]'); // Champ de date
+    let statusInput = document.querySelector('.box-input[name="status"]'); // Champ de statut
+    
+    modalTitle.textContent = message; // Modification du texte du titre
+    priorityInput.value = priority; // Modification de la valeur du champ de priorité
+    dateInput.value = date; // Modification de la valeur du champ de date
+    statusInput.value = status; // Modification de la valeur du champ de statut
+
+    modalContainer.classList.add('active'); // Ajout de la classe pour afficher la fenêtre modale
 }
 
-// Afficher les tâches au chargement de la page
+// Ajoutez un écouteur d'événements pour l'élément "Tout"
+document.getElementById("allTasks").addEventListener("click", function() {
+    showTodo(); // Afficher toutes les tâches
+});
+
+// Ajoutez un écouteur d'événements pour l'élément "A faire"
+document.getElementById("todoTasks").addEventListener("click", function() {
+    let todoTasks = todos.filter(todo => todo.status === "en attente");
+    displayFilteredTasks(todoTasks); // Afficher les tâches en attente
+});
+
+// Ajoutez un écouteur d'événements pour l'élément "En cours"
+document.getElementById("inProgressTasks").addEventListener("click", function() {
+    let inProgressTasks = todos.filter(todo => todo.status === "encours");
+    displayFilteredTasks(inProgressTasks); // Afficher les tâches en cours
+});
+
+// Ajoutez un écouteur d'événements pour l'élément "Terminé"
+document.getElementById("completedTasks").addEventListener("click", function() {
+    let completedTasks = todos.filter(todo => todo.status === "terminé");
+    displayFilteredTasks(completedTasks); // Afficher les tâches terminées
+});
+
+// Fonction pour afficher les tâches filtrées
+function displayFilteredTasks(filteredTasks) {
+    let li = ""; // Variable pour stocker le contenu HTML des éléments de tâche filtrés
+    filteredTasks.forEach((todo, id) => {
+        // Vérifie si la tâche est terminée
+        let taskClass = todo.status === "terminé" ? "task completed" : "task";
+
+        li += `<li class="${taskClass}">
+            <div class="task-content">
+                <label for="${id}">
+                    <input onclick="updateStatus(this)" type="checkbox" id="${id}" ${todo.status === "terminé" ? "checked" : ""}>
+                    <div class="infoTask">
+                        <p>${todo.name}</p>
+                        <p class="date">${todo.date}</p>
+                    </div>
+                    <h2></h2>
+                </label>
+                <div class="settings">
+                    <p class="priority">${todo.priority}</p> <!-- Affichage de la priorité de la tâche -->
+                    <img src="" alt="">
+                    <button onclick="deleteTask(${id})">X</button> <!-- Bouton pour supprimer la tâche -->
+                </div>
+            </div>
+        </li>`;
+    });
+    taskItem.innerHTML = li; // Injection du contenu HTML dans le conteneur des éléments de tâche
+}
+
+// Sélectionnez tous les éléments span dans la catégorie des filtres
+const filterSpans = document.querySelectorAll('.filtrages span');
+
+// Ajoutez un écouteur d'événements à chaque élément span
+filterSpans.forEach(span => {
+    span.addEventListener('click', () => {
+        // Supprimez la classe "active" de tous les éléments span
+        filterSpans.forEach(s => s.classList.remove('active'));
+        // Ajoutez la classe "active" à l'élément span actuellement cliqué
+        span.classList.add('active');
+        
+        // Vous pouvez également ici ajouter du code pour filtrer les tâches en fonction de l'élément cliqué
+    });
+});
+
+// Affichage des tâches au chargement de la page
 showTodo();
 
 
-
-
-// const taskInput = document.querySelector(".AjouTask input");
-// taskItem = document.querySelector(".taskItem")
-
-// //local storage
-// let todos = JSON.parse(localStorage.getItem("todo-list"));
-
-// function showTodo() {
-//     let li = "";
-//     if(todos){
-//         todos.forEach((todo, id) => {
-//             li += `<li class="task">
-//                         <label for="${id}">
-//                             <input onclick="updateSatuts(this)" type="checkbox" id="${id}">
-//                             <div class="infoTask">
-//                             <p>${todo.name}</p>
-//                             </div>
-//                             <h2></h2>
-//                         </label>
-//                         <div class="settings">
-//                             <button>Supprimer</button>
-//                             <img src="" alt="">
-//                         </div>
-//                     </li>`;
-//         });
-//     }
-//     taskItem.innerHTML = li;
-// }
-// showTodo();
-// function updateSatuts(selectedTask) {
-//     let taskName = selectedTask.parentElement.lastChildElement;
-//     if(selectedTask.checked) {
-//         taskName.classList.add("checked")
-//     }else {
-//         taskName.classList.remove("checked");
-//     }
-// }
-// taskInput.addEventListener("keyup", e => {
-//     let userTask = taskInput.value.trim();
-//     if(e.key == "Enter" && userTask){
-        
-//         if(!todos){ //if todo isn't exist, pass an empty array to todos
-//             todos = [];
-//         }
-//         taskInput.value = "";
-//         let taskInfo = {name: userTask, status:"encours"};
-//         todos.push(taskInfo); // ajouter un nouveau tache
-//         localStorage.setItem("todo-list", JSON.stringify(todos));
-//         showTodo();
-//     }
-// });

@@ -97,6 +97,10 @@ body{
 }
 .filtrages span.active{
     color: rgb(99, 202, 16);
+    background: var(--blanc);
+    padding: 18px;
+    margin: 0;
+    bottom: 0;
 }
 .categories .deletteBtn{
     outline: none;
@@ -135,7 +139,6 @@ body{
 }
 
 .infoTask .date{
-    position: absolute;
     background: #e41111;
     font-size: 12px;
     border-radius: 3px;
@@ -157,6 +160,9 @@ body{
     margin-right: 5px;
     width: 30px;
     height: 20px;
+}
+.task-content label input[type="checkbox"]:checked + .infoTask p {
+    text-decoration: line-through;
 }
 
 .task .task-content {
@@ -341,6 +347,25 @@ body{
     outline:0;
   
   }
+  .completed {
+    text-decoration: line-through; /* Barre de texte barrée */
+}
+
+.completed input[type="checkbox"] {
+    visibility: hidden; /* Masquer la case à cocher */
+}
+
+.completed input[type="checkbox"] + label::before {
+    content: "✔"; /* Symbole de case cochée */
+    display: inline-block;
+    font-size: 1.2em;
+    margin-right: 5px;
+}
+
+.completed .task-content label::before {
+    text-decoration: line-through; /* Barre de texte barrée sur la case à cocher */
+}
+
   
   @media (max-width: 768px) {
     .modal-container {

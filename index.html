@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,50 +9,41 @@
 <body>
     <div class="container">
         <div class="head">
-        <h1 style="text-align: center;" >My Task</h1>
-        <div class="AjouTask">
-            <input type="text" placeholder="ajouter une tache">
-            <button class="clear-btn" id="addTaskButton">Ajouter</button>
-        </div>
-        <div class="categories">
-            <div class="filtrages">
-                <span id="All" class="active">Tout</span>
-                <span id="encours">Encours</span>
-                <span id="termine">Termine</span>
+            <h1 id="main-heading" tabindex="0" aria-label="Liste des tâches">My Task</h1>
+            <div class="AjouTask">
+                <input type="text" id="taskInput" aria-label="Saisissez une nouvelle tâche">
+                <button id="addTaskButton" aria-label="Ajouter une tâche">Ajouter</button>
             </div>
-            <button class="deletteBtn">Effacer Tout</button>
+            <div class="categories">
+                <div class="filtrages" aria-label="Filtres des tâches">
+                    <span id="allTasks" class="filter-option active" tabindex="0" aria-label="Afficher toutes les tâches" role="button">Tout</span>
+                    <span id="todoTasks" class="filter-option" tabindex="0" aria-label="Afficher les tâches à faire" role="button">A faire</span>
+                    <span id="inProgressTasks" class="filter-option" tabindex="0" aria-label="Afficher les tâches en cours" role="button">En cours</span>
+                    <span id="completedTasks" class="filter-option" tabindex="0" aria-label="Afficher les tâches terminées" role="button">Terminé</span>
+                </div>
+            </div>
         </div>
+        <ul class="taskItem" aria-live="polite" aria-relevant="additions removals">
+        </ul>
     </div>
-            <ul class="taskItem">
-                
-            </ul>
-        
-    </div>
-    <div class="modal-container">
-
-        <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
+    <div class="modal-container" aria-hidden="true" aria-labelledby="modalTitle">
+        <div class="modal" role="dialog" aria-modal="true">
           <button 
-          aria-label="close modal"
+          aria-label="Fermer la fenêtre modale"
           class="close-modal modal-trigger">X</button>
-          <h1 id="modalTitle">Votre tache a été ajouté avec succès</h1>
-          <form class="box" action="" method="post">
-            <select class="box-input" name="priorite" required>
+          <h1 id="modalTitle">Votre tâche a été ajoutée avec succès</h1>
+          <form class="box" method="post">
+            <select class="box-input" name="priorite" required aria-label="Sélectionnez la priorité de la tâche">
                 <option value="" selected disabled>Choisissez la priorité</option>
                 <option value="Basse">Basse</option>
                 <option value="Moyenne">Moyenne</option>
                 <option value="Haute">Haute</option>
             </select>
-            <input type="date" class="box-input" name="date" placeholder="date" required />
-            <select class="box-input" name="status" required>
+            <input type="date" class="box-input" name="date" required aria-label="Saisissez la date de la tâche" />
+            <select class="box-input" name="status" required aria-label="Sélectionnez le statut de la tâche">
                 <option value="" selected disabled>Choisissez le statut</option>
                 <option value="encours">En cours</option>
                 <option value="terminé">Terminé</option>
                 <option value="en attente">En attente</option>
             </select>
-            <input type="submit" name="submit" value="Valider" class="box-button" />
-        </form>
-        </div>
-      </div>
-    <script src="script.js"></script>
-</body>
-</html>
+            <button type="submit" name="submit" value="Valider" class="box-button" aria-label="Valider la tâche">Valider</button
