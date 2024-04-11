@@ -41,8 +41,6 @@ addTaskButton.addEventListener("click", () => {
         showTodo();
     }
 });
-
-
 // Fonction pour afficher les tâches dans l'interface utilisateur
 function showTodo() {
     let li = ""; // Variable pour stocker le contenu HTML des éléments de tâche
@@ -122,7 +120,7 @@ function updateStatus(selectedTask) {
 
 // Fonction pour supprimer une tâche
 function deleteTask(id) {
-    todos.splice(id, 1); // Suppression de la tâche du tableau des tâches
+    todos.splice(id); // Suppression de la tâche du tableau des tâches
     localStorage.setItem("todo-list", JSON.stringify(todos)); // Mise à jour des données dans le stockage local
     showTodo(); // Actualisation de l'affichage des tâches
 }
@@ -188,7 +186,6 @@ filterSpans.forEach(span => {
         filterSpans.forEach(s => s.classList.remove('active'));
         // Ajoutez la classe "active" à l'élément span actuellement cliqué
         span.classList.add('active');
-        
     });
 });
 
