@@ -17,13 +17,12 @@ body{
     display: flex;
     justify-content: center; /* Centre le contenu horizontalement */
     align-items: center; /* Centre le contenu verticalement */
-    height: 100vh; /* Occupe toute la hauteur de la fenêtre */
+    min-height: 100vh; /* Occupe toute la hauteur de la fenêtre */
     background-color: #f0f0f0; /* Ajoute une couleur de fond */
 }
-
+    /* Style du conteneur principal*/
 .container{
-    position: relative;
-    max-height: 100vh;
+    max-height: max-content;
     margin: 0 auto;
     padding: 0;
     justify-content: center;
@@ -33,6 +32,7 @@ body{
     border-color: var(--gris);
     border-style: solid;
 }
+
 .head h1{
     align-items: center;
     justify-content: center;
@@ -44,7 +44,7 @@ body{
     border-radius: 21px;
     top: 0%;
 }
-
+/* Styles pour l'animation de montée des lettres */
 #txt{
     display:flex;
     align-items:center;
@@ -63,7 +63,7 @@ body{
  #txt>b{
     height:3.5rem;
     box-shadow:0 .4rem .3rem -.3rem #aaa;
-    color:#979c9f;
+    color: var(--gris);
     background:linear-gradient(#aaf,#acf,#afc);
     background-clip:text;
     text-emphasis-color:transparent;
@@ -75,6 +75,7 @@ body{
     -webkit-transform:rotateX(-85deg);
     animation:getUp 7s infinite;
  }
+ /* Styles pour l'animation de l'effet de texte */
  #txt>b:nth-child(2){
     animation-delay:.25s;
  }
@@ -96,6 +97,7 @@ body{
  #txt>b:nth-child(8){
     animation-delay:1.75s;
  }
+ /* Animation de l'effet de texte */
  @keyframes getUp{
     10%,50%{
        transform:rotateX(0);
@@ -104,19 +106,26 @@ body{
        transform:rotateX(-85deg);
     }
  }
+ /* Styles pour le formulaire d'ajout de tâche */
 .AjouTask{
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex: 1;
     height: 42px;
-    padding: 0 25px;
+    padding: 0;
     position: relative;
     display: flex;
     background: var(--gris);
 }
+/* Styles pour les éléments de tâche */
 .task p{
     font-size: 25px;
 }
 .task  .checked {
     text-decoration: line-through;
 }
+/* Styles pour le champ de saisie de tâche */
 .AjouTask input{
     display: flex;
     outline: none;
@@ -125,6 +134,7 @@ body{
     border: 1px solid var(--gris);
     padding: O 20px 0 53px;
 }
+/* Styles pour le bouton d'ajout de tâche */
 .AjouTask button{
     outline: none;
     border: none;
@@ -134,6 +144,7 @@ body{
     padding: 7px 13px;
     transition: all 0.6s;
 }
+/* Styles pour le bouton avec effet de transition */
 .btn {
     border-radius: 4px;
     text-transform: uppercase;
@@ -142,29 +153,31 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1.5px solid black;
+    border: 1.5px solid var(--noir);
     padding: 1rem 2rem;
     font-size: 3rem;
     background-size: 300%;
     transition: all 0.6s;
   }
 .orange {
-    color: orange;
+    color: var(--vert);
     background-image: linear-gradient(120deg, white 50%, orange 50%);
 }
 .btn:hover {
-    color: #fff;
+    color: var(--blanc);
     background-position: 100%;
     transform: translateX(0.5rem);
   }
   
-  .btn:active {
+.btn:active {
     transform: translate(0.5rem, 0.5rem);
     box-shadow: 0px 10px 20px -15px rgba(0, 0, 0, 0.75);
   }
+  /* Styles pour le texte de rappel dans le champ de saisie de tâche */
 .AjouTask input::placeholder{
-    color: #bfbfbf;
+    color: var(--gris);
 }
+/* Styles pour les catégories et les boutons de filtre */
 .categories,  li{
     display: flex;
     align-items: center;
@@ -172,7 +185,7 @@ body{
 }
 .categories{
     padding: 28px 25px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--gris);
     background: var(--gris);
 }
 .filtrages span{
@@ -184,7 +197,7 @@ body{
     margin-left: 0;
 }
 .filtrages span.active{
-    color: rgb(99, 202, 16);
+    color: var(--vert);
     background: var(--blanc);
     padding: 18px;
     margin: 0;
@@ -200,7 +213,6 @@ body{
     padding: 7px 13px;
     background: var(--vert);
     transition: opacity 0.4s 0.2s ease-out;
-
 } 
 .lisTache{
     height: 60%;
@@ -290,9 +302,7 @@ body{
     align-items: flex-end;
 }
 
-/* Ajoutez d'autres styles au besoin */
-
-
+/* style du modal  */
 .modal-btn {
     padding: 10px 14px;
     font-size: 18px;
@@ -335,7 +345,7 @@ body{
     text-align: center;
     padding: 30px;
     margin-top: 42px;
-    background: #fff;
+    background: var(--blanc);
     border-radius: 5px;
     position: absolute;
     top: 40%;
@@ -362,7 +372,7 @@ body{
     right: 10px;
     cursor: pointer;
     background: var(--vert);
-    color: #fff;
+    color: var(--blanc);
   }
   .modal h1 {
     margin-bottom: 10px;
@@ -403,17 +413,19 @@ body{
   
 .box-button {
     border-radius: 5px;
-    background: #ec1b08;
+    background: var(--vert);
     text-align: center;
     cursor: pointer;
     font-size: 19px;
     width: 100%;
     height: 51px;
     padding: 0;
-    color: #fff;
+    color: var(--blanc);
     border: 0;
     outline:0;
   }
+      /* Fin Modal */
+
   .completed {
     text-decoration: line-through; /* Barre de texte barrée */
 }
