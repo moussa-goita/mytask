@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"> <!-- Importation du fichier de style -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>My Task</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
         </div>
             <!-- Formulaire d'ajout de tâche -->
             <div class="AjouTask">
-                <input type="text" id="taskInput" aria-label="Saisissez une nouvelle tâche">
+                <input type="text" maxlength="20" id="taskInput" aria-label="Saisissez une nouvelle tâche">
                 <button class="btn orange" id="addTaskButton" aria-label="Ajouter une tâche">Ajouter</button>
             </div>
             <!-- Catégories et filtres des tâches -->
@@ -63,7 +64,7 @@
                     <option value="en attente">En attente</option>
                 </select>
                 <!-- Bouton de validation de la tâche -->
-                <button type="submit" name="submit" value="Valider" class="box-button" aria-label="Valider la tâche">Valider</button>
+                <button type="submit" id="btnAdd" name="submit" value="Valider" class="box-button" aria-label="Valider la tâche">Valider</button>
             </form>
         </div>
     </div>

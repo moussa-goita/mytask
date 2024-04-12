@@ -27,45 +27,17 @@ addTaskButton.addEventListener("click", () => {
             name: userTask,
             date: "", // Initialiser la date à vide
             priority: "", // Initialiser la priorité à vide
-            status: "en attente" // Initialiser le statut à "en attente"
+            status: "" // Initialiser le statut à vide
         };
         // Afficher le formulaire modal
         toggleModal();
-        // Réinitialiser les champs du formulaire modal
-        document.querySelector('.box-input[name="priorite"]').value = "";
-        document.querySelector('.box-input[name="date"]').value = "";
-        document.querySelector('.box-input[name="status"]').value = "";
         // Stocker temporairement les détails de la tâche dans le sessionStorage
         sessionStorage.setItem("tempTaskInfo", JSON.stringify(taskInfo));
         localStorage.setItem("todo-list", JSON.stringify(todos));
         showTodo();
     }
 });
-// Fonction pour afficher les tâches dans l'interface utilisateur
-function showTodo() {
-    let li = ""; // Variable pour stocker le contenu HTML des éléments de tâche
-    todos.forEach((todo, id) => {
-        // Construction de chaque élément de tâche avec les informations stockées localement
-        li += `<li class="task">
-                <div class="task-content">
-                    <label for="${id}">
-                        <input onclick="updateStatus(this)" type="checkbox" id="${id}">
-                        <div class="infoTask">
-                            <p>${todo.name}</p>
-                            <p class="date">${todo.date}</p>
-                        </div>
-                        <h2></h2>
-                    </label>
-                    <div class="settings">
-                        <p class="priority">${todo.priority}</p> <!-- Affichage de la priorité de la tâche -->
-                        <img src="" alt="">
-                        <button onclick="deleteTask(${id})">X</button> <!-- Bouton pour supprimer la tâche -->
-                    </div>
-                </div>
-                </li>`;
-    });
-    taskItem.innerHTML = li; // Injection du contenu HTML dans le conteneur des éléments de tâche
-}
+
 const modalForm = document.querySelector('.modal form');
 // Ajoutez un gestionnaire d'événements pour le formulaire de la fenêtre modale
 modalForm.addEventListener('submit', function(event) {
@@ -102,6 +74,36 @@ modalForm.addEventListener('submit', function(event) {
     // Réinitialisez le champ de saisie de la tâche principale
     taskInput.value = "";
 });
+
+// Fonction pour afficher les tâches dans l'interface utilisateur
+function showTodo() {
+    let li = ""; // Variable pour stocker le contenu HTML des éléments de tâche
+    todos.forEach((todo, id) => {
+        // Construction de chaque élément de tâche avec les informations stockées localement
+        li += `<li class="task">
+                <div class="task-content">
+                    <label for="${id}">
+                        <input onclick="updateStatus(this)" type="checkbox" id="${id}">
+                        <div class="infoTask">
+                            <p>${todo.name}</p>
+                            <p class="date">${todo.date}</p>
+                        </div>
+                    </label>
+                    <div class="settings">
+                        <p class="priority">${todo.priority}</p> <!-- Affichage de la priorité de la tâche -->
+                        <img onclick= src="/images/delete.png" alt="">
+                        <button onclick="deleteTask(${id})">X</button> <!-- Bouton pour supprimer la tâche -->
+                    </div>
+                </div>
+                </li>`;
+    });
+    taskItem.innerHTML = li; // Injection du contenu HTML dans le conteneur des éléments de tâche
+}
+// $(document).ready(function () {
+//     $(btnAdd).click(function(){
+//         $(li).fadeIn();
+//     })
+// });
 // Fonction pour mettre à jour le statut de la tâche (en cours/terminée) lorsqu'on coche/décoche la case à cocher
 function updateStatus(selectedTask) {
     let taskId = parseInt(selectedTask.id); // Récupération de l'ID de la tâche

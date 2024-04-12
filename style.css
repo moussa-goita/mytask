@@ -50,12 +50,11 @@ body{
     align-items:center;
     justify-content:center;
     flex:1;
-    font-family:sans-serif;
     letter-spacing:3.5px;
     font-size:3.5rem;
     font-weight:700;
     position:relative;
-    transform-style:preserve-3d;
+    transform-style:preserve-3d; /*créer un effet 3D lors de la rotation des lettres.*/
     perspective:100px;
     -webkit-transform-style:preserve-3d;
     -webkit-perspective:100px;
@@ -91,18 +90,12 @@ body{
  #txt>b:nth-child(6){
     animation-delay:1.25s;
  }
- #txt>b:nth-child(7){
-    animation-delay:1.5s;
- }
- #txt>b:nth-child(8){
-    animation-delay:1.75s;
- }
  /* Animation de l'effet de texte */
  @keyframes getUp{
-    10%,50%{
+    50%{
        transform:rotateX(0);
     }
-    0%,60%,100%{
+    0%,60%{
        transform:rotateX(-85deg);
     }
  }
@@ -111,6 +104,7 @@ body{
     justify-content: center;
     text-align: center;
     display: flex;
+    border-style: none;
     flex: 1;
     height: 42px;
     padding: 0;
@@ -243,6 +237,7 @@ body{
 .infoTask .date{
     background: var(--vert);
     font-size: 12px;
+    width: max-content;
     border-radius: 3px;
 }
 .taskItem .task:last-child{
@@ -290,7 +285,7 @@ body{
     margin-right: 5px;
     font-size: 15px;
     border-radius: 10px;
-    
+
 }
 .settings button{
     margin-right: 32px;
