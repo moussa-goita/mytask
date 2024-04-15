@@ -1,7 +1,7 @@
 // Sélection des éléments HTML nécessaires
 const taskInput = document.querySelector(".AjouTask input"); // Champ de saisie de la tâche
 const addTaskButton = document.getElementById("addTaskButton"); // Bouton pour ajouter une tâche
- const taskItem = document.querySelector(".taskItem"); // Conteneur des éléments de tâche
+const taskItem = document.querySelector(".taskItem"); // Conteneur des éléments de tâche
 
 // Gestion de la fenêtre modale
 const modalContainer = document.querySelector(".modal-container"); // Conteneur de la fenêtre modale
@@ -18,7 +18,7 @@ function toggleModal(){
 // Données stockées localement
 let todos = JSON.parse(localStorage.getItem("todo-list")) || []; // Récupération des tâches depuis le stockage local, initialisation à un tableau vide s'il n'y a pas de données
 
-// Ajout d'un écouteur d'événements pour ajouter une nouvelle tâche
+// Cliquer pour ajouter une nouvelle tâche
 addTaskButton.addEventListener("click", () => {
     let userTask = taskInput.value.trim();
     if (userTask) {
@@ -127,24 +127,24 @@ function deleteTask(id) {
     showTodo(); // Actualisation de l'affichage des tâches
 }
 
-// Ajoutez un écouteur d'événements pour l'élément "Tout"
+// Pour afficher Tout les taches
 document.getElementById("allTasks").addEventListener("click", function() {
     showTodo(); // Afficher toutes les tâches
 });
 
-// Ajoutez un écouteur d'événements pour l'élément "A faire"
+//  Pour afficher les taches A faire
 document.getElementById("todoTasks").addEventListener("click", function() {
     let todoTasks = todos.filter(todo => todo.status === "en attente");
     displayFilteredTasks(todoTasks); // Afficher les tâches en attente
 });
 
-// Ajoutez un écouteur d'événements pour l'élément "En cours"
+// Pour afficher les taches En cours
 document.getElementById("inProgressTasks").addEventListener("click", function() {
     let inProgressTasks = todos.filter(todo => todo.status === "encours");
     displayFilteredTasks(inProgressTasks); // Afficher les tâches en cours
 });
 
-// Ajoutez un écouteur d'événements pour l'élément "Terminé"
+// Pour afficher les taches Terminé
 document.getElementById("completedTasks").addEventListener("click", function() {
     let completedTasks = todos.filter(todo => todo.status === "terminé");
     displayFilteredTasks(completedTasks); // Afficher les tâches terminées
@@ -156,7 +156,6 @@ function displayFilteredTasks(filteredTasks) {
     filteredTasks.forEach((todo, id) => {
         // Vérifie si la tâche est terminée
         let taskClass = todo.status === "terminé" ? "task completed" : "task";
-
         li += `<li class="${taskClass}">
             <div class="task-content">
                 <label for="${id}">
@@ -181,7 +180,7 @@ function displayFilteredTasks(filteredTasks) {
 // Sélectionnez tous les éléments span dans la catégorie des filtres
 const filterSpans = document.querySelectorAll('.filtrages span');
 
-// Ajoutez un écouteur d'événements à chaque élément span
+// Au selection pour afficher une tache filtré
 filterSpans.forEach(span => {
     span.addEventListener('click', () => {
         // Supprimez la classe "active" de tous les éléments span
